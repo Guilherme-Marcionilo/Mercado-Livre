@@ -6,9 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import br.com.zup.desafio.mercadolivre.seguranca.UserDetailsMapper;
 import br.com.zup.desafio.mercadolivre.usuario.Usuario;
 
-
-
-
 @Configuration
 public class AppUserDetailsMapper implements UserDetailsMapper {
 

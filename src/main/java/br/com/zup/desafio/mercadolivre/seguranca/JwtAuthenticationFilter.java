@@ -13,11 +13,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import org.springframework.util.StringUtils;
+
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private TokenManager tokenManager;
 	private UsersService usersService;
-	
+
 	public JwtAuthenticationFilter(TokenManager tokenManager, UsersService usersService) {
 		this.tokenManager = tokenManager;
 		this.usersService = usersService;
@@ -28,24 +30,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		Optional<String> possibleToken = getTokenFromRequest(request);
-		
-        if (possibleToken.isPresent() && tokenManager.isValid(possibleToken.get())) {
-            
-        	String userName = tokenManager.getUserName(possibleToken.get());
-            UserDetails userDetails = usersService.loadUserByUsername(userName);
-            
-            UsernamePasswordAuthenticationToken authentication = 
-            			new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
-        
-        chain.doFilter(request, response);
+		if (possibleToken.isPresent() && tokenManager.isValid(possibleToken.get())) {
+
+			String userName = tokenManager.getUserName(possibleToken.get());
+			UserDetails userDetails = usersService.loadUserByUsername(userName);
+
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
+					null, userDetails.getAuthorities());
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
+
+		chain.doFilter(request, response);
 	}
 
 	private Optional<String> getTokenFromRequest(HttpServletRequest request) {
 		String authToken = request.getHeader("Authorization");
 
+		if (StringUtils.hasText(authToken) && authToken.startsWith("Bearer "))
+			return Optional.ofNullable(authToken.substring(7));
+		
 		return Optional.ofNullable(authToken);
 	}
 

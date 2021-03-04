@@ -38,6 +38,7 @@ public class UserAuthenticationController {
 			Authentication authentication = authManager.authenticate(authenticationToken); 			
 			String jwt = tokenManager.generateToken(authentication);
 			
+			
 			return ResponseEntity.ok(jwt);
 		
 		} catch (AuthenticationException e) {
