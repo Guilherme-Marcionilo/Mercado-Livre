@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +26,13 @@ public class UsuarioController {
 	
 	@PostMapping
 	@Transactional
-	public String cadastrar(@RequestBody @Valid NovoUsuarioRequest request) {
+	public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoUsuarioRequest request) {
 		
 		Usuario novoUsuario = request.toModel();
 		
 		em.persist(novoUsuario);
 		
-		return novoUsuario.toString();
+		return ResponseEntity.ok(novoUsuario);
 	}
 			
 }
