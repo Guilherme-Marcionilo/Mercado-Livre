@@ -16,11 +16,13 @@ import com.sun.istack.NotNull;
 
 import br.com.zup.desafio.mercadolivre.categoria.Categoria;
 import br.com.zup.desafio.mercadolivre.compartilhado.ExistsId;
+import br.com.zup.desafio.mercadolivre.compartilhado.UniqueValue;
 import br.com.zup.desafio.mercadolivre.usuario.Usuario;
 
 public class NovoProdutoRequest {
 
 	@NotBlank
+	@UniqueValue(domainClass = Produto.class, fieldName = "nome", message = "OPS! Existe nomes repetidos!")
 	private String nome;
 
 	@Positive
