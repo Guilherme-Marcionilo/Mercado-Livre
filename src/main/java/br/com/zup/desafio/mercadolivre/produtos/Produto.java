@@ -50,6 +50,9 @@ public class Produto {
 	@Valid
 	@Size(min = 3, max = 60, message = "OPS! O tamanho deve ser entre 3 e 60!")
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
 
 	@Deprecated
 	public Produto() {
@@ -114,6 +117,18 @@ public class Produto {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+	
+	public void associaImagens(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream()
+				.map(link -> new ImagemProduto(this,link))
+				.collect(Collectors.toSet());
+	
+		this.imagens.addAll(imagens);
+	}
+
+	public boolean pertenceAoUsuario(Usuario possivelDono) {
+		return this.dono.equals(possivelDono);
 	}
 
 }
