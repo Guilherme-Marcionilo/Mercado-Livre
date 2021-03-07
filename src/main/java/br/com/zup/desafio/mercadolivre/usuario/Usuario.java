@@ -1,7 +1,6 @@
 package br.com.zup.desafio.mercadolivre.usuario;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +12,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table (name = "usuarios")
-public class Usuario implements UserDetails{
+public class Usuario {
 	
-	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,40 +62,32 @@ public class Usuario implements UserDetails{
 		return "Usuario [id=" + id + ", email=" + email + ", senha=" + senha + ", instanteCriacao=" + instanteCriacao
 				+ "]";
 	}
-
+	
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		return result;
 	}
 
 	@Override
-	public String getPassword() {
-		return this.senha;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		return true;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
     
 }

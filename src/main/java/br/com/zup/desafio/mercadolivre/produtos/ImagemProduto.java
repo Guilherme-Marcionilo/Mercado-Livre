@@ -12,25 +12,25 @@ import org.hibernate.validator.constraints.URL;
 
 import com.sun.istack.NotNull;
 
-@Entity	
+@Entity
 public class ImagemProduto {
-
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotNull @Valid
+
+	@NotNull
+	@Valid
 	@ManyToOne
 	private Produto produto;
-	
+
 	@URL
 	@NotBlank
 	private String link;
-	
+
 	@Deprecated
-	public ImagemProduto() {}
+	public ImagemProduto() {
+	}
 
 	public ImagemProduto(@NotNull @Valid Produto produto, @URL @NotBlank String link) {
 		this.produto = produto;
@@ -68,9 +68,16 @@ public class ImagemProduto {
 		return true;
 	}
 
-	
-	
-	
-	
-	
+	public Long getId() {
+		return id;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
 }
