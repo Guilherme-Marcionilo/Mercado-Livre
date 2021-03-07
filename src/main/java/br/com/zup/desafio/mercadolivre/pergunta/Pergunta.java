@@ -1,5 +1,7 @@
 package br.com.zup.desafio.mercadolivre.pergunta;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +27,8 @@ public class Pergunta {
 
 	@ManyToOne
 	private @Valid Produto produto;
+	
+	private LocalDateTime instante = LocalDateTime.now();
 
 	@Deprecated
 	public Pergunta() {}
@@ -33,6 +37,10 @@ public class Pergunta {
 		this.titulo = titulo;
 		this.interessada = interessada;
 		this.produto = produto;
+	}
+	
+	public LocalDateTime getInstante() {
+		return instante;
 	}
 
 	public Long getId() {
@@ -50,5 +58,9 @@ public class Pergunta {
 	public Produto getProduto() {
 		return produto;
 	}
-	
+
+	public Usuario getDonoProduto() {
+		return produto.getDono();
+	}
+
 }

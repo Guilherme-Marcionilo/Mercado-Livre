@@ -24,6 +24,9 @@ public class PerguntaController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private Emails emails;
 
 	@PostMapping(value = "/produtos/{id}/perguntas")
 	@Transactional
@@ -34,6 +37,10 @@ public class PerguntaController {
 		Usuario interessada = usuarioRepository.findByEmail("a@gmail.com").get();
 
 		Pergunta novaPergunta = request.toModel(interessada, produto);
+		
+		emails.novaPergunta(novaPergunta);
+		
+		
 
 		em.persist(novaPergunta);
 		return ResponseEntity.ok(novaPergunta);
