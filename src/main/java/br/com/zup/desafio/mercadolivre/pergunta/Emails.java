@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.sun.istack.NotNull;
 
+import br.com.zup.desafio.mercadolivre.fechamentocompra.Compra;
+
 @Service
 public class Emails{
 
@@ -17,7 +19,15 @@ public class Emails{
 	public void novaPergunta(@NotNull @Valid Pergunta pergunta) {
 		
 		mailer.send("<html>...</html>","Nova pergunta...",pergunta.getInteressada().getEmail(),
-				"novapergunta@nossomercadolivre.com",pergunta.getDonoProduto().getEmail());
+				"a@gmail.com",pergunta.getDonoProduto().getEmail());
+	}
+
+
+	public void novaCompra(Compra novaCompra) {
+		mailer.send("nova compra..." + novaCompra, "Você tem uma nova compra",
+				novaCompra.getComprador().getEmail(),
+				"a@gmail.com",
+				novaCompra.getDonoProduto().getEmail());
 	}
 
 }

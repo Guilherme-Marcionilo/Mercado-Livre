@@ -36,7 +36,4 @@ public class NovaCompraRequest {
 	public GatewayPagamento getGateway() {
 		return gateway;
 	}
-	
-	
-
 }
