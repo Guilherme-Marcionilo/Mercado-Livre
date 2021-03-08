@@ -58,6 +58,7 @@ public class Produto {
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 	
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    // A imagem só é persistida quando o produto é atualizado
 	private Set<ImagemProduto> imagens = new HashSet<>();
 	
 	@OneToMany(mappedBy = "produto")
@@ -121,6 +122,10 @@ public class Produto {
 
 	public Set<ImagemProduto> getImagens() {
 		return imagens;
+	}
+
+	public SortedSet<Pergunta> getPerguntas() {
+		return perguntas;
 	}
 
 	@Override
@@ -189,6 +194,18 @@ public class Produto {
 
 	public Opinioes getOpinioes() {
 		return new Opinioes(this.opinioes);
+	}
+
+	public boolean abataEstoque(@Positive int quantidade) {
+		Assert.isTrue(quantidade > 0, "OPS! A quantidade deve ser maior que zero para abater o estoque "+quantidade);
+		
+		if(quantidade <= this.quantidade) {
+			this.quantidade-=quantidade;
+			return true;
+			
+		}
+		
+		return false;
 	}
 
 

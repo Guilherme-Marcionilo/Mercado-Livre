@@ -72,10 +72,6 @@ public class ImagemProduto {
 		return id;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
 	public String getLink() {
 		return link;
 	}
