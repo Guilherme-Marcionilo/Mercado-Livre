@@ -17,6 +17,7 @@ public class EventosNovaCompra {
 		} 
 		else {
 			//eventosFalha
+			System.out.println("Deu ruim!");
 		}		
 	}
 

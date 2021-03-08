@@ -11,7 +11,7 @@ public class NotaFiscal implements EventoCompraSucesso {
 
 	@Override
 	public void processa(Compra compra) {
-		Assert.isTrue(compra.processadaComSucesso(), "Opa opa opa compra nao concluida com sucesso " + compra);
+		Assert.isTrue(compra.processadaComSucesso(), "OPS! Compra nao concluida com sucesso " + compra);
 
 		RestTemplate restTemplate = new RestTemplate();
 		Map<String, Object> request = Map.of("idCompra", compra.getId(), "idComprador", compra.getComprador().getId());

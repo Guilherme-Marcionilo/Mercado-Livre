@@ -28,7 +28,7 @@ public class RetornoPagamentoController {
 	
 	@PostMapping("/retorno-paypal/{id}")
 	@Transactional
-	public String processamentoPaypal(@PathVariable("id") Long idCompra, @Valid RetornoPaypalRequest request) {
+	public String processamentoPaypal(@PathVariable("id") Long idCompra, @RequestBody @Valid RetornoPaypalRequest request) {
 		
 		return processa(idCompra, request);
 	}

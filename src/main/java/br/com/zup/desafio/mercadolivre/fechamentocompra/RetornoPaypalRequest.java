@@ -21,6 +21,15 @@ public class RetornoPaypalRequest implements RetornoGatewayPagamento {
 		this.status = status;
 		this.idTransacao = idTransacao;
 	}
+	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public String getIdTransacao() {
+		return idTransacao;
+	}
 
 	public Transacao toTransacao(Compra compra) {
 		StatusTransacao statusCalculado = this.status == 0 ? StatusTransacao.ERRO
