@@ -25,6 +25,9 @@ public class NovaCategoriaRequest {
 	public NovaCategoriaRequest() {
 	}
 	
+	public NovaCategoriaRequest(String string) {
+	}
+	
 	public NovaCategoriaRequest(@NotBlank(message = "Ops! O nome está vazio (nulo)!") @Length(max = 50) String nome,
 			@Positive(message = "Ops! O número deve ser maior que 0!") Long idCategoriaMae) {
 		this.nome = nome;
@@ -55,7 +58,7 @@ public class NovaCategoriaRequest {
 		
 		if(idCategoriaMae != null) {
 			Categoria categoriaMae = em.find(Categoria.class, idCategoriaMae);
-			Assert.notNull(categoriaMae, "O ID da Categoria Mãe precisa ser válido!");
+			//Assert.notNull(categoriaMae, "O ID da Categoria Mãe precisa ser válido!");
 			categoria.setMae(categoriaMae);
 		}
 		

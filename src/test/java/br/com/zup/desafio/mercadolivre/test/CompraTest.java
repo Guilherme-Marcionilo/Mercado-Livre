@@ -1,4 +1,4 @@
-package br.com.zup.desafio.mercadolivre.MercadoLivre;
+package br.com.zup.desafio.mercadolivre.test;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
