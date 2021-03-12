@@ -12,7 +12,10 @@ public class EventosNovaCompra {
 	private Set<EventoCompraSucesso> eventosCompraSucesso;
 
 	public void processa(Compra compra) {
+		
+		System.out.println("Qualquer");
 		if(compra.processadaComSucesso()) {
+			
 			eventosCompraSucesso.forEach(evento -> evento.processa(compra));
 		} 
 		else {

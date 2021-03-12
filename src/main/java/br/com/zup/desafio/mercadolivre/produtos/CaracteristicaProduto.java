@@ -34,14 +34,7 @@ public class CaracteristicaProduto {
 		this.produto = produto;
 
 	}
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -50,9 +43,6 @@ public class CaracteristicaProduto {
 		return descricao;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
 
 	@Override
 	public int hashCode() {
@@ -84,13 +74,6 @@ public class CaracteristicaProduto {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "CaracteristicaProduto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", produto="
-				+ produto + "]";
-	}
-
 
 
 }

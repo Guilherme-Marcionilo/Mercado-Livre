@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.util.Assert;
 
 import br.com.zup.desafio.mercadolivre.compartilhado.ExistsId;
 import br.com.zup.desafio.mercadolivre.compartilhado.UniqueValue;
@@ -24,10 +23,7 @@ public class NovaCategoriaRequest {
 	@Deprecated
 	public NovaCategoriaRequest() {
 	}
-	
-	public NovaCategoriaRequest(String string) {
-	}
-	
+
 	public NovaCategoriaRequest(@NotBlank(message = "Ops! O nome está vazio (nulo)!") @Length(max = 50) String nome,
 			@Positive(message = "Ops! O número deve ser maior que 0!") Long idCategoriaMae) {
 		this.nome = nome;

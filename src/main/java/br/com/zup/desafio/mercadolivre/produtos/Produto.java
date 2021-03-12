@@ -92,6 +92,9 @@ public class Produto {
 
 	}
 
+	public Produto(String string) {
+	}
+
 	public Usuario getDono() {
 		return this.dono;
 	}
