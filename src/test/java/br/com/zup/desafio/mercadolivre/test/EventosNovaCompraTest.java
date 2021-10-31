@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -23,7 +22,6 @@ import br.com.zup.desafio.mercadolivre.produtos.NovaCaracteristicaRequest;
 import br.com.zup.desafio.mercadolivre.produtos.Produto;
 import br.com.zup.desafio.mercadolivre.usuario.Usuario;
 
-@RunWith(MockitoJUnitRunner.class)
 public class EventosNovaCompraTest {
 
 	@Autowired
